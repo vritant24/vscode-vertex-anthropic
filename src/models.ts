@@ -1,4 +1,5 @@
 import type { LanguageModelChatInformation } from 'vscode';
+import builtInModels from './models.catalog.json';
 
 /** A Claude model offered on Vertex AI. */
 export interface VertexClaudeModel {
@@ -17,6 +18,8 @@ export interface VertexClaudeModel {
 	thinking?: boolean;
 }
 
+const BUILT_IN_MODELS = builtInModels as VertexClaudeModel[];
+
 /**
  * Static catalog sourced from Anthropic's "Claude on Vertex AI" docs:
  * https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai
@@ -25,12 +28,7 @@ export interface VertexClaudeModel {
  * the `vertexAnthropic.modelOverrides` setting.
  */
 export const VERTEX_CLAUDE_MODELS: VertexClaudeModel[] = [
-	{ id: 'claude-opus-4-8', name: 'Claude Opus 4.8', family: 'claude', version: '4.8', maxInputTokens: 1_000_000, maxOutputTokens: 32_000, vision: true, toolCalling: true, thinking: true },
-	{ id: 'claude-opus-4-7', name: 'Claude Opus 4.7', family: 'claude', version: '4.7', maxInputTokens: 1_000_000, maxOutputTokens: 32_000, vision: true, toolCalling: true, thinking: true },
-	{ id: 'claude-opus-4-6', name: 'Claude Opus 4.6', family: 'claude', version: '4.6', maxInputTokens: 1_000_000, maxOutputTokens: 32_000, vision: true, toolCalling: true, thinking: true },
-	{ id: 'claude-sonnet-4-6', name: 'Claude Sonnet 4.6', family: 'claude', version: '4.6', maxInputTokens: 1_000_000, maxOutputTokens: 64_000, vision: true, toolCalling: true, thinking: true },
-	{ id: 'claude-sonnet-4-5@20250929', name: 'Claude Sonnet 4.5', family: 'claude', version: '4.5', maxInputTokens: 200_000, maxOutputTokens: 64_000, vision: true, toolCalling: true, thinking: true },
-	{ id: 'claude-haiku-4-5@20251001', name: 'Claude Haiku 4.5', family: 'claude', version: '4.5', maxInputTokens: 200_000, maxOutputTokens: 8_192, vision: true, toolCalling: true }
+	...BUILT_IN_MODELS
 ];
 
 /** Partial override entry from the `vertexAnthropic.modelOverrides` setting. */

@@ -1,0 +1,67 @@
+[
+	{
+		"id": "claude-opus-4-8",
+		"name": "Claude Opus 4.8",
+		"family": "claude",
+		"version": "4.8",
+		"maxInputTokens": 1000000,
+		"maxOutputTokens": 32000,
+		"vision": true,
+		"toolCalling": true,
+		"thinking": true
+	},
+	{
+		"id": "claude-opus-4-7",
+		"name": "Claude Opus 4.7",
+		"family": "claude",
+		"version": "4.7",
+		"maxInputTokens": 1000000,
+		"maxOutputTokens": 32000,
+		"vision": true,
+		"toolCalling": true,
+		"thinking": true
+	},
+	{
+		"id": "claude-opus-4-6",
+		"name": "Claude Opus 4.6",
+		"family": "claude",
+		"version": "4.6",
+		"maxInputTokens": 1000000,
+		"maxOutputTokens": 32000,
+		"vision": true,
+		"toolCalling": true,
+		"thinking": true
+	},
+	{
+		"id": "claude-sonnet-4-6",
+		"name": "Claude Sonnet 4.6",
+		"family": "claude",
+		"version": "4.6",
+		"maxInputTokens": 1000000,
+		"maxOutputTokens": 64000,
+		"vision": true,
+		"toolCalling": true,
+		"thinking": true
+	},
+	{
+		"id": "claude-sonnet-4-5@20250929",
+		"name": "Claude Sonnet 4.5",
+		"family": "claude",
+		"version": "4.5",
+		"maxInputTokens": 200000,
+		"maxOutputTokens": 64000,
+		"vision": true,
+		"toolCalling": true,
+		"thinking": true
+	},
+	{
+		"id": "claude-haiku-4-5@20251001",
+		"name": "Claude Haiku 4.5",
+		"family": "claude",
+		"version": "4.5",
+		"maxInputTokens": 200000,
+		"maxOutputTokens": 8192,
+		"vision": true,
+		"toolCalling": true
+	}
+]
