@@ -1,0 +1,185 @@
+{
+  "name": "vscode-vertex-anthropic",
+  "displayName": "Anthropic on Vertex AI",
+  "description": "Use Anthropic Claude models on Google Vertex AI from VS Code chat (any extension that uses vscode.lm).",
+  "version": "0.1.0",
+  "publisher": "vritant24",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vritant24/vscode-vertex-anthropic.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vritant24/vscode-vertex-anthropic/issues"
+  },
+  "engines": {
+    "vscode": "^1.106.0"
+  },
+  "categories": [
+    "AI",
+    "Chat",
+    "Other"
+  ],
+  "keywords": [
+    "anthropic",
+    "claude",
+    "vertex",
+    "gcp",
+    "google-cloud",
+    "byok",
+    "language-model"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "languageModelChatProviders": [
+      {
+        "vendor": "vertex-anthropic",
+        "displayName": "Anthropic on Vertex AI"
+      }
+    ],
+    "configuration": {
+      "title": "Anthropic on Vertex AI",
+      "properties": {
+        "vertexAnthropic.projectId": {
+          "type": "string",
+          "default": "",
+          "title": "GCP Project ID",
+          "markdownDescription": "Your Google Cloud project ID with Vertex AI enabled. Models only appear once this is set."
+        },
+        "vertexAnthropic.region": {
+          "type": "string",
+          "enum": [
+            "global",
+            "us",
+            "eu",
+            "us-east5",
+            "us-central1",
+            "europe-west1",
+            "europe-west4",
+            "asia-southeast1"
+          ],
+          "default": "global",
+          "title": "Region",
+          "markdownDescription": "Vertex AI region. `global` is recommended (no premium); `us`/`eu` are multi-region; others are single-region (10% premium)."
+        },
+        "vertexAnthropic.authMode": {
+          "type": "string",
+          "enum": [
+            "gcloud",
+            "service-account"
+          ],
+          "default": "gcloud",
+          "title": "Authentication Mode",
+          "enumDescriptions": [
+            "Use Application Default Credentials via the installed `gcloud` CLI (run `gcloud auth application-default login` once).",
+            "Use a service-account JSON key file at the path below."
+          ]
+        },
+        "vertexAnthropic.serviceAccountKeyPath": {
+          "type": "string",
+          "default": "",
+          "title": "Service Account Key Path",
+          "markdownDescription": "Absolute path to a service-account JSON keyfile. Only used when `authMode` is `service-account`."
+        },
+        "vertexAnthropic.modelOverrides": {
+          "type": "array",
+          "default": [],
+          "markdownDescription": "Override or extend the built-in model catalog. Each item: `{ id, name, family, version, maxInputTokens, maxOutputTokens, vision, toolCalling, thinking }`.",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "maxInputTokens",
+              "maxOutputTokens"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "family": {
+                "type": "string",
+                "default": "claude"
+              },
+              "version": {
+                "type": "string"
+              },
+              "maxInputTokens": {
+                "type": "number"
+              },
+              "maxOutputTokens": {
+                "type": "number"
+              },
+              "vision": {
+                "type": "boolean",
+                "default": true
+              },
+              "toolCalling": {
+                "type": "boolean",
+                "default": true
+              },
+              "thinking": {
+                "type": "boolean",
+                "default": false
+              }
+            }
+          }
+        },
+        "vertexAnthropic.logLevel": {
+          "type": "string",
+          "enum": [
+            "off",
+            "error",
+            "warn",
+            "info",
+            "debug",
+            "trace"
+          ],
+          "default": "info",
+          "title": "Log Level"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "vertexAnthropic.refreshModels",
+        "title": "Vertex Anthropic: Refresh Models"
+      },
+      {
+        "command": "vertexAnthropic.signOut",
+        "title": "Vertex Anthropic: Clear Cached Token"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "node esbuild.config.mjs --production",
+    "watch": "node esbuild.config.mjs --watch",
+    "compile": "tsc -p ./ --noEmit",
+    "lint": "eslint src",
+    "test": "vitest run",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "dependencies": {
+    "@anthropic-ai/vertex-sdk": "^0.16.1",
+    "google-auth-library": "^10.6.2"
+  },
+  "devDependencies": {
+    "@types/node": "^25.9.1",
+    "@types/vscode": "~1.106.0",
+    "@typescript-eslint/eslint-plugin": "^8.60.0",
+    "@typescript-eslint/parser": "^8.60.0",
+    "@vscode/vsce": "^3.9.1",
+    "esbuild": "^0.28.0",
+    "eslint": "^10.4.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.7"
+  }
+}
