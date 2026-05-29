@@ -30,6 +30,14 @@ Activation flow: `extension.ts` → builds an `AuthProvider` + `VertexAnthropicC
 
 `engines.vscode`, `@types/vscode`, and the API surface must stay aligned. `@types/vscode` must be **≤** `engines.vscode` or `vsce package` fails. The provider API + `LanguageModelDataPart` require **≥ 1.106**.
 
+## Changelog convention
+
+- For any user-visible change (features, fixes, behavior changes, deprecations, or removals), update `CHANGELOG.md` in the same PR.
+- Follow **Keep a Changelog** style sections (`Added`, `Changed`, `Fixed`, `Deprecated`, `Removed`, `Security`).
+- During normal development, add entries under `Unreleased`.
+- When cutting a release, move `Unreleased` entries to a versioned heading in the form `## [x.y.z] - YYYY-MM-DD` and keep wording concise and user-facing.
+- Internal-only refactors with no user impact should not add noisy changelog entries.
+
 ## Workflow
 
 ```bash

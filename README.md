@@ -1,6 +1,6 @@
 # Anthropic on Vertex AI for VS Code
 
-Use Anthropic Claude models running on Google Vertex AI from VS Code chat — including Copilot Chat and any other extension that consumes `vscode.lm`. Addresses [microsoft/vscode#318967](https://github.com/microsoft/vscode/issues/318967).
+Use Anthropic Claude models running on Google Vertex AI from VS Code chat — including Copilot Chat and any other extension that consumes `vscode.lm`.
 
 VS Code's built-in BYOK "Custom Endpoint" provider (`apiType: "messages"`) is incompatible with Vertex AI's Anthropic endpoints, which differ from the native Anthropic API: the model id lives in the URL path, `anthropic_version` goes in the request body, and auth uses GCP IAM Bearer tokens. This extension is a thin adapter over the official [`@anthropic-ai/vertex-sdk`](https://www.npmjs.com/package/@anthropic-ai/vertex-sdk), which handles those deltas.
 
